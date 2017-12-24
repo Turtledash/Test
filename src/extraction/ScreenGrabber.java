@@ -1,4 +1,4 @@
-package extract;
+package extraction;
 
 import java.awt.Rectangle;
 import java.awt.Robot;

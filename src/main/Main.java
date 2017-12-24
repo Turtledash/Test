@@ -6,8 +6,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import extract.ScreenCropper;
-import extract.ScreenGrabber;
+import extraction.ScreenCropper;
+import extraction.ScreenGrabber;
 
 public class Main {
 
