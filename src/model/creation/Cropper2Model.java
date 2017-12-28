@@ -56,7 +56,7 @@ public class Cropper2Model {
 	}
 
 	private Player createPlayer(int position) {
-		return new Player(getStacksize(position), getBet(position));
+		return new Player(getStacksize(position), getBet(position), position == 9);
 	}
 
 	private Double getBet(int position) {
@@ -109,9 +109,11 @@ public class Cropper2Model {
 
 	private int getBigBlindFromButton(int position) {
 		do {
+			position = position % 9;
 			position++;
 		} while (!isActive(position));
 		do {
+			position = position % 9;
 			position++;
 		} while (!isActive(position));
 		return position;

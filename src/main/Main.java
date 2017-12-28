@@ -2,8 +2,11 @@ package main;
 
 import java.awt.image.BufferedImage;
 
+import action.Actor;
 import extraction.ScreenCropper;
 import extraction.ScreenGrabber;
+import model.Spot;
+import model.creation.Cropper2Model;
 import util.Util;
 
 public class Main {
@@ -11,9 +14,21 @@ public class Main {
 	private static int handCounter;
 	
 	public static void main(String[] args) {
+		while (true) {
+			BufferedImage screenshot = new ScreenGrabber().getScreen();
+			ScreenCropper cropper = new ScreenCropper(screenshot);
+			if (cropper.getTurnIndicatorPixel() == -10216162) {
+				Cropper2Model trans = new Cropper2Model(cropper);
+				Spot currentSpot = trans.createModel();
+				currentSpot.printDebug();
+				new Actor().bet(0.06);
+				Util.sleep(1000);
+			}
+		}
+		
 	}
 	
-	private static void saveHandsLoop() {
+	public static void saveHandsLoop() {
 		while (true) {
 			BufferedImage screenshot = new ScreenGrabber().getScreen();
 			ScreenCropper cropper = new ScreenCropper(screenshot);
