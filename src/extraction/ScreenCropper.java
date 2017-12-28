@@ -10,6 +10,10 @@ public class ScreenCropper {
 		this.screenshot = screenshot;
 	}
 	
+	public BufferedImage getPotsizeImage() {
+		return screenshot.getSubimage(652, 275, 206, 29);
+	}
+	
 	public BufferedImage getMoneyPlayerImage() {
 		return screenshot.getSubimage(581, 699, 100, 20);
 	}

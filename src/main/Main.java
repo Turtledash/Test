@@ -1,20 +1,16 @@
 package main;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import extraction.ScreenCropper;
 import extraction.ScreenGrabber;
+import util.Util;
 
 public class Main {
 
 	private static int handCounter;
 	
 	public static void main(String[] args) {
-		saveHandsLoop();
 	}
 	
 	private static void saveHandsLoop() {
@@ -24,7 +20,7 @@ public class Main {
 			if (cropper.getTurnIndicatorPixel() == -10216162) {
 				handCounter++;
 				System.out.println("Saving Hand #" + handCounter);
-				saveImage(screenshot, "hands/Hand" + handCounter);
+				Util.saveImage(screenshot, "hands/Hand" + handCounter);
 				try {Thread.sleep(10000);} catch (InterruptedException e) {}
 			}
 		}
@@ -32,7 +28,7 @@ public class Main {
 
 	public static void saveScreenshot() {
 		BufferedImage screenshot = new ScreenGrabber().getScreen();
-		saveImage(screenshot, "Screenshot");
+		Util.saveImage(screenshot, "Screenshot");
 	}
 
 	public static void loop() {
@@ -63,33 +59,25 @@ public class Main {
 				System.out.println("DealerEnemy7Indicator: " + cropper.getDealerEnemy7IndicatorPixel());
 				System.out.println("DealerEnemy8Indicator: " + cropper.getDealerEnemy8IndicatorPixel());
 				System.out.println("DealerPlayerIndicator: " + cropper.getDealerPlayerIndicatorPixel());
-				saveImage(screenshot, "Screenshot");
-				saveImage(cropper.getPlayerCard1Image(), "PlayerCard1");
-				saveImage(cropper.getPlayerCard1Image(), "PlayerCard2");
-				saveImage(cropper.getMiddleCard1Image(), "MiddleCard1");
-				saveImage(cropper.getMiddleCard2Image(), "MiddleCard2");
-				saveImage(cropper.getMiddleCard3Image(), "MiddleCard3");
-				saveImage(cropper.getMiddleCard4Image(), "MiddleCard4");
-				saveImage(cropper.getMiddleCard5Image(), "MiddleCard5");
-				saveImage(cropper.getMoneyEnemy1Image(), "MoneyEnemy1");
-				saveImage(cropper.getMoneyEnemy2Image(), "MoneyEnemy2");
-				saveImage(cropper.getMoneyEnemy3Image(), "MoneyEnemy3");
-				saveImage(cropper.getMoneyEnemy4Image(), "MoneyEnemy4");
-				saveImage(cropper.getMoneyEnemy5Image(), "MoneyEnemy5");
-				saveImage(cropper.getMoneyEnemy6Image(), "MoneyEnemy6");
-				saveImage(cropper.getMoneyEnemy7Image(), "MoneyEnemy7");
-				saveImage(cropper.getMoneyEnemy8Image(), "MoneyEnemy8");
-				saveImage(cropper.getMoneyPlayerImage(), "MoneyPlayer");
+				Util.saveImage(screenshot, "Screenshot");
+				Util.saveImage(cropper.getPlayerCard1Image(), "PlayerCard1");
+				Util.saveImage(cropper.getPlayerCard1Image(), "PlayerCard2");
+				Util.saveImage(cropper.getMiddleCard1Image(), "MiddleCard1");
+				Util.saveImage(cropper.getMiddleCard2Image(), "MiddleCard2");
+				Util.saveImage(cropper.getMiddleCard3Image(), "MiddleCard3");
+				Util.saveImage(cropper.getMiddleCard4Image(), "MiddleCard4");
+				Util.saveImage(cropper.getMiddleCard5Image(), "MiddleCard5");
+				Util.saveImage(cropper.getMoneyEnemy1Image(), "MoneyEnemy1");
+				Util.saveImage(cropper.getMoneyEnemy2Image(), "MoneyEnemy2");
+				Util.saveImage(cropper.getMoneyEnemy3Image(), "MoneyEnemy3");
+				Util.saveImage(cropper.getMoneyEnemy4Image(), "MoneyEnemy4");
+				Util.saveImage(cropper.getMoneyEnemy5Image(), "MoneyEnemy5");
+				Util.saveImage(cropper.getMoneyEnemy6Image(), "MoneyEnemy6");
+				Util.saveImage(cropper.getMoneyEnemy7Image(), "MoneyEnemy7");
+				Util.saveImage(cropper.getMoneyEnemy8Image(), "MoneyEnemy8");
+				Util.saveImage(cropper.getMoneyPlayerImage(), "MoneyPlayer");
 			}
 			try {Thread.sleep(500);} catch (InterruptedException e) {}
-		}
-	}
-	
-	public static void saveImage(BufferedImage image, String name) {
-		try {
-			ImageIO.write(image, "png", new File("C:\\Users\\Simon\\git\\Test\\"+ name + ".png"));
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 }
