@@ -18,11 +18,11 @@ public class Spot {
 			System.out.print(c.toString());
 		System.out.println("Players:");
 		for (int i = 0; i < players.size(); i++) {
-			System.out.println(players.get(i).toString());
 			if (players.get(i).isHero) {
 				System.out.println((players.size() - i - 1) + " left to act");
 				break;
 			}
+			System.out.println(players.get(i).toString());
 		}
 	}
 }

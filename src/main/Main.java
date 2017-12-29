@@ -3,6 +3,7 @@ package main;
 import java.awt.image.BufferedImage;
 
 import action.Actor;
+import decision.DecisionEngine;
 import extraction.ScreenCropper;
 import extraction.ScreenGrabber;
 import model.Spot;
@@ -14,6 +15,10 @@ public class Main {
 	private static int handCounter;
 	
 	public static void main(String[] args) {
+		play();
+	}
+	
+	public static void play() {
 		while (true) {
 			BufferedImage screenshot = new ScreenGrabber().getScreen();
 			ScreenCropper cropper = new ScreenCropper(screenshot);
@@ -21,7 +26,7 @@ public class Main {
 				Cropper2Model trans = new Cropper2Model(cropper);
 				Spot currentSpot = trans.createModel();
 				currentSpot.printDebug();
-				new Actor().bet(0.06);
+				new DecisionEngine().makeDecsion(currentSpot, new Actor());;
 				Util.sleep(1000);
 			}
 		}
