@@ -39,12 +39,15 @@ public class Cropper2Model {
 		spot.heroCard2 = cardTranscriptor.getRightPlayerCard();
 		addBoardCards(spot.board);
 		addPlayers(spot.players);
+		System.out.println("HeroPos: " + spot.getHeroPosition());
 		return spot;
  	}
 
 	private void addPlayers(List<Player> players) {
 		int button = getButton();
+		System.out.println("Buttonposition: " + button);
 		int bigblind = getBigBlindFromButton(button);
+		System.out.println("Bigblindposition: " + bigblind);
 		int position = bigblind;
 		do {
 			position = position % 9;
@@ -160,7 +163,9 @@ public class Cropper2Model {
 			return 7;
 		if (buttonTranscriptor.isEnemy8Button())
 			return 8;
-		return 9;
+		if (buttonTranscriptor.isPlayerButton())
+			return 9;
+		throw new IllegalStateException();
 	}
 
 	private void addBoardCards(List<Card> board) {

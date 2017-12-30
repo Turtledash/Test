@@ -19,17 +19,25 @@ public class Main {
 	}
 	
 	public static void play() {
-		while (true) {
-			BufferedImage screenshot = new ScreenGrabber().getScreen();
-			ScreenCropper cropper = new ScreenCropper(screenshot);
-			if (cropper.getTurnIndicatorPixel() == -10216162) {
-				Cropper2Model trans = new Cropper2Model(cropper);
-				Spot currentSpot = trans.createModel();
-				currentSpot.printDebug();
-				new DecisionEngine().makeDecsion(currentSpot, new Actor());;
-				Util.sleep(1000);
+			while (true) {
+				try {
+				BufferedImage screenshot = new ScreenGrabber().getScreen();
+				ScreenCropper cropper = new ScreenCropper(screenshot);
+				if (cropper.getTurnIndicatorPixel() == -10216162) {
+					Util.sleep(200);
+					Cropper2Model trans = new Cropper2Model(cropper);
+					Spot currentSpot = trans.createModel();
+					currentSpot.printDebug();
+					new DecisionEngine().makeDecsion(currentSpot, new Actor());
+					Util.saveImage(screenshot, "currentHand");
+					Util.sleep(200);
+				}
+				} catch (Exception e) {
+					e.printStackTrace();
+					BufferedImage screenshot = new ScreenGrabber().getScreen();
+					Util.saveImage(screenshot, "Bugsplat");
+				}
 			}
-		}
 		
 	}
 	

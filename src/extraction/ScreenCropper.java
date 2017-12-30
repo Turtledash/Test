@@ -1,6 +1,8 @@
 package extraction;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 
 public class ScreenCropper {
 
@@ -11,103 +13,103 @@ public class ScreenCropper {
 	}
 	
 	public BufferedImage getPotsizeImage() {
-		return screenshot.getSubimage(652, 275, 206, 29);
+		return deepCopy(screenshot.getSubimage(652, 275, 206, 29));
 	}
 	
 	public BufferedImage getMoneyPlayerImage() {
-		return screenshot.getSubimage(581, 699, 100, 20);
+		return deepCopy(screenshot.getSubimage(581, 699, 100, 20));
 	}
 	
 	public BufferedImage getMoneyEnemy8Image() {
-		return screenshot.getSubimage(1021, 629, 100, 20);
+		return deepCopy(screenshot.getSubimage(1021, 629, 100, 20));
 	}
 	
 	public BufferedImage getMoneyEnemy7Image() {
-		return screenshot.getSubimage(1171, 435, 100, 20);
+		return deepCopy(screenshot.getSubimage(1171, 435, 100, 20));
 	}
 	
 	public BufferedImage getMoneyEnemy6Image() {
-		return screenshot.getSubimage(1101, 247, 100, 20);
+		return deepCopy(screenshot.getSubimage(1101, 247, 100, 20));
 	}
 	
 	public BufferedImage getMoneyEnemy5Image() {
-		return screenshot.getSubimage(841, 155, 100, 20);
+		return deepCopy(screenshot.getSubimage(841, 155, 100, 20));
 	}
 	
 	public BufferedImage getMoneyEnemy4Image() {
-		return screenshot.getSubimage(378, 155, 100, 20);
+		return deepCopy(screenshot.getSubimage(378, 155, 100, 20));
 	}
 	
 	public BufferedImage getMoneyEnemy3Image() {
-		return screenshot.getSubimage(115, 247, 100, 20);
+		return deepCopy(screenshot.getSubimage(115, 247, 100, 20));
 	}
 	
 	public BufferedImage getMoneyEnemy2Image() {
-		return screenshot.getSubimage(53, 435, 100, 20);
+		return deepCopy(screenshot.getSubimage(53, 435, 100, 20));
 	}
 	
 	public BufferedImage getMoneyEnemy1Image() {
-		return screenshot.getSubimage(200, 629, 100, 20);
+		return deepCopy(screenshot.getSubimage(200, 629, 100, 20));
 	}
 
 	public BufferedImage getMiddleCard5Image() {
-		return screenshot.getSubimage(800, 315, 79, 114);
+		return deepCopy(screenshot.getSubimage(800, 315, 79, 114));
 	}
 	public BufferedImage getMiddleCard4Image() {
-		return screenshot.getSubimage(709, 315, 79, 70);
+		return deepCopy(screenshot.getSubimage(709, 315, 79, 70));
 	}
 	public BufferedImage getMiddleCard3Image() {
-		return screenshot.getSubimage(618, 315, 79, 70);
+		return deepCopy(screenshot.getSubimage(618, 315, 79, 70));
 	}
 	public BufferedImage getMiddleCard2Image() {
-		return screenshot.getSubimage(527, 315, 79, 70);
+		return deepCopy(screenshot.getSubimage(527, 315, 79, 70));
 	}
 	public BufferedImage getMiddleCard1Image() {
-		return screenshot.getSubimage(436, 315, 79, 70);
+		return deepCopy(screenshot.getSubimage(436, 315, 79, 70));
 	}
 	
 	public BufferedImage getPlayerCard1Image() {
-		return screenshot.getSubimage(577, 582, 79, 70);
+		return deepCopy(screenshot.getSubimage(577, 582, 79, 70));
 	}
 	
 	public BufferedImage getPlayerCard2Image() {
-		return screenshot.getSubimage(658, 582, 79, 70);
+		return deepCopy(screenshot.getSubimage(658, 582, 79, 70));
 	}
 	
 	public BufferedImage getBetPlayerImage() {
-		return screenshot.getSubimage(643, 524, 155, 19);
+		return deepCopy(screenshot.getSubimage(643, 524, 155, 19));
 	}
 	
 	public BufferedImage getBetEnemy1Image() {
-		return screenshot.getSubimage(423, 504, 155, 19);
+		return deepCopy(screenshot.getSubimage(423, 504, 155, 19));
 	}
 	
 	public BufferedImage getBetEnemy2Image() {
-		return screenshot.getSubimage(308, 434, 155, 19);
+		return deepCopy(screenshot.getSubimage(308, 434, 155, 19));
 	}
 	
 	public BufferedImage getBetEnemy3Image() {
-		return screenshot.getSubimage(380, 262, 155, 19);
+		return deepCopy(screenshot.getSubimage(380, 262, 155, 19));
 	}
 	
 	public BufferedImage getBetEnemy4Image() {
-		return screenshot.getSubimage(550, 232, 155, 19);
+		return deepCopy(screenshot.getSubimage(550, 232, 155, 19));
 	}
 	
 	public BufferedImage getBetEnemy5Image() {
-		return screenshot.getSubimage(636, 214, 155, 19);
+		return deepCopy(screenshot.getSubimage(636, 214, 155, 19));
 	}
 	
 	public BufferedImage getBetEnemy6Image() {
-		return screenshot.getSubimage(786, 264, 155, 19);
+		return deepCopy(screenshot.getSubimage(786, 264, 155, 19));
 	}
 	
 	public BufferedImage getBetEnemy7Image() {
-		return screenshot.getSubimage(855, 439, 155, 19);
+		return deepCopy(screenshot.getSubimage(855, 439, 155, 19));
 	}
 	
 	public BufferedImage getBetEnemy8Image() {
-		return screenshot.getSubimage(751, 504, 155, 19);
+		return deepCopy(screenshot.getSubimage(751, 504, 155, 19));
 	}
 
 	public int getPlayer8ActiveIndicatorPixel() {
@@ -200,5 +202,12 @@ public class ScreenCropper {
 	
 	public int getTurnIndicatorPixel() {
 		return screenshot.getRGB(1113, 839);
+	}
+	
+	private  BufferedImage deepCopy(BufferedImage bi) {
+	    ColorModel cm = bi.getColorModel();
+	    boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+	    WritableRaster raster = bi.copyData(bi.getRaster().createCompatibleWritableRaster());
+	    return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
 	}
 }

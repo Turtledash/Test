@@ -16,6 +16,14 @@ public enum Card {
 		return string;
 	}
 	
+	public String getCardType() {
+		return string.substring(0, string.length() - 1);
+	}
+	
+	public String getCardColor() {
+		return string.substring(string.length() - 1, string.length());
+	}
+	
 	public static Card fromString(String string) {
 		for (Card c: Card.values())
 			if (c.string.equals(string))

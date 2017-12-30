@@ -11,6 +11,22 @@ public class Spot {
 	public List<Player> players = new LinkedList<Player>(); //last player is BB
 	public double potSize;
 	
+	public int getHeroPosition() {
+		for (int i = 0; i < players.size(); i++) {
+			if (players.get(i).isHero) {
+				return (players.size() - i - 1);
+			}
+		}
+		throw new IllegalStateException();
+	}
+	
+	public Player getHero() {
+		for (Player p: players)
+			if (p.isHero)
+				return p;
+		throw new IllegalStateException();
+	}
+	
 	public void printDebug() {
 		System.out.println("Player cards: " + heroCard1.toString() + heroCard2.toString());
 		System.out.println("Board: ");

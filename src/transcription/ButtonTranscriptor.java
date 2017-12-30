@@ -47,7 +47,7 @@ public class ButtonTranscriptor {
 	
 	public boolean isEnemy6Button() {
 		int indicator = cropper.getDealerEnemy6IndicatorPixel();
-		if (indicator == -720886)
+		if (indicator == -720886 || indicator == -786422)
 			return true;
 		return false;
 	}
